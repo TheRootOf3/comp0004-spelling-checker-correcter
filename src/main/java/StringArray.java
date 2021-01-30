@@ -136,4 +136,9 @@ public class StringArray {
         return ((double) size / (double) array.length);
     }
 
+////    Sorting algos
+//    public void mergeSort(){
+//
+//    }
+
 }

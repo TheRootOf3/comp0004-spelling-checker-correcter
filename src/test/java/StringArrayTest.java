@@ -52,6 +52,20 @@ class StringArrayTest {
             assertEquals(0, array[i].compareTo(newSa.get(i)));
     }
 
+    @Test
+    @DisplayName("Dictionary presence test")
+    void dictLookUp() {
+        SpellChecker sc = new SpellChecker("C:\\Users\\aszab\\OneDrive\\STUDIA\\2020_2021_Modules\\COMP0004\\Coursework1\\src\\main\\resources\\words");
+        Reader rd = new Reader();
+        Parser pa = rd.readUserFile("C:\\Users\\aszab\\OneDrive\\STUDIA\\2020_2021_Modules\\COMP0004\\Coursework1\\src\\main\\resources\\words");
+        StringArray sa = new StringArray();
+        sa = pa.getParsedSA();
+        for (int i = 0; i < sa.size(); i++) {
+            System.out.println(i + "/" + sa.size());
+            assertEquals(true, sc.lookUpWordLinear(sa.get(i)));
+        }
+    }
+
 //    @Test
 //    void isEmpty() {
 //    }

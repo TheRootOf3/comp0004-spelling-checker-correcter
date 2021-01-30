@@ -1,23 +1,26 @@
 public class Reader {
 
-    public StringArray readUserFile(String path){
+    public Parser readUserFile(String path){
         FileInput fin = new FileInput(path);
         Parser pa = new Parser();
         while(fin.hasNextLine())
             pa.extractWords(fin.nextLine());
-        return pa.getParsedSA();
+        return pa;
     }
 
-    public StringArray readInput(){
+    public Parser readDict(String path){
+        FileInput fin = new FileInput(path);
+        Parser pa = new Parser();
+        while(fin.hasNextLine())
+            pa.extractWords(fin.nextLine());
+        return pa;
+    }
+
+    public Parser readInput(){
         Input input = new Input();
         Parser pa = new Parser();
         pa.extractWords(input.nextLine());
-        return pa.getParsedSA();
+        return pa;
     }
 
-
-
-//    public String getReadStream(){
-//        return stream;
-//    }
 }

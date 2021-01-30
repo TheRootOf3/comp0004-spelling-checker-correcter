@@ -1,8 +1,13 @@
 public class Parser {
     private StringArray parsedSA;
+    private StringArray parsedSAl;
+    private StringArray parsedSAs;
 
     public Parser(){
         parsedSA = new StringArray();
+        parsedSAl = new StringArray();
+        parsedSAs = new StringArray();
+
     }
 
     private String removeDelims(String streamLine){
@@ -26,6 +31,12 @@ public class Parser {
             if (word != "")
                 parsedSA.add(word);
 
+            if (word != ""){
+                if (word.charAt(0) == word.toUpperCase().charAt(0))
+                    parsedSAl.add(word);
+                else
+                    parsedSAs.add(word);
+            }
             index++;
 
         }
@@ -33,5 +44,11 @@ public class Parser {
 
     public StringArray getParsedSA(){
         return parsedSA;
+    }
+    public StringArray getParsedSAl(){
+        return parsedSAl;
+    }
+    public StringArray getParsedSAs(){
+        return parsedSAs;
     }
 }
