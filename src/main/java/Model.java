@@ -1,7 +1,7 @@
 public class Model {
     private Dictionary dict;
-    private Reader rd;
-    private StringArray wrongWords;
+    private final Reader rd;
+    private final StringArray wrongWords;
 
     public Model(){
         rd = new Reader();
@@ -19,12 +19,12 @@ public class Model {
         dict = new Dictionary(path);
     }
 
-    public void checkWordsFromTerminal(){
+    public void checkWords(){
         StringArray wordsToCheck = rd.readInput();
         checkAllWords(wordsToCheck);
     }
 
-    public void checkWordsFromFile(String path){
+    public void checkWords(String path){
         StringArray wordsToCheck = rd.readFile(path);
         checkAllWords(wordsToCheck);
     }

@@ -1,5 +1,5 @@
 public class Dictionary {
-    private StringArray dictArray;
+    private final StringArray dictArray;
 
 
     public Dictionary(String dictPath){

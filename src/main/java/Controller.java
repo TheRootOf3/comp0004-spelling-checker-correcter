@@ -1,7 +1,7 @@
 public class Controller {
 
-    private Model md;
-    private View vw;
+    private final Model md;
+    private final View vw;
 
     public Controller(){
         md = new Model();
@@ -33,11 +33,11 @@ public class Controller {
     }
 
     private void getWordsFromFile(){
-        md.checkWordsFromFile(vw.getWordsFromFile());
+        md.checkWords(vw.getWordsFromFile());
     }
 
     private void getWordsFromTerminal(){
-        md.checkWordsFromTerminal();
+        md.checkWords();
     }
 
 //    public void chooseAction(){

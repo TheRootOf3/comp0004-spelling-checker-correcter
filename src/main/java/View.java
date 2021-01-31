@@ -1,6 +1,6 @@
 public class View {
-    private Model md;
-    private Input in;
+    private final Model md;
+    private final Input in;
 
     public View(Model md){
         this.md = md;
