@@ -6,25 +6,42 @@ public class Run {
 
 //        Reader rd = new Reader("C:\\Users\\aszab\\OneDrive\\STUDIA\\2020_2021_Modules\\COMP0004\\Coursework1\\src\\main\\resources\\words");
         Reader rd = new Reader();
-//        run.showStringArray(rd.readUserFile("C:\\Users\\aszab\\OneDrive\\STUDIA\\2020_2021_Modules\\COMP0004\\Coursework1\\src\\main\\resources\\words"));
-//        run.showStringArray(rd.readInput().getParsedSA());
-        sa = rd.readInput().getParsedSA();
-        SpellChecker sc = new SpellChecker("C:\\Users\\aszab\\OneDrive\\STUDIA\\2020_2021_Modules\\COMP0004\\Coursework1\\src\\main\\resources\\words");
+
+        Dictionary dict = new Dictionary("./src/main/resources/words");
+//        SpellChecker sc = new SpellChecker("C:\\Users\\aszab\\OneDrive\\STUDIA\\2020_2021_Modules\\COMP0004\\Coursework1\\src\\main\\resources\\words");
 
 //        long startTime;
 //        startTime = System.nanoTime();
-//        System.out.println(sc.lookUpWord("Flour"));
+//        System.out.println(sc.lookUpWord("plyers"));
 //        System.out.println(System.nanoTime() - startTime);
 //
+//        sa = rd.readUserFile("C:\\Users\\aszab\\OneDrive\\STUDIA\\2020_2021_Modules\\COMP0004\\Coursework1\\src\\main\\resources\\words").getParsedSA();
+//        run.showStringArray(sa);
+//
+//        startTime = System.nanoTime();
+//        sa.sort();
+//        System.out.println(System.nanoTime() - startTime);
+        System.out.println(dict.lookUpWord("dogs"));
+
+
 //        startTime = System.nanoTime();
 //        System.out.println(sc.lookUpWordLinear("Flour"));
 //        System.out.println(System.nanoTime() - startTime);
 
 //        System.out.println(sc.lookUpWord("really"));
 
-        for (int i = 0; i < sa.size(); i++)
-            System.out.println(sa.get(i) + " " + sc.lookUpWord(sa.get(i)));
 
+        sa = rd.readInput();
+        for (int i = 0; i < sa.size(); i++)
+            System.out.println(sa.get(i) + " " + dict.lookUpWord(sa.get(i)));
+
+//        sa.add("c");
+//        sa.add("a");
+//        sa.add("b");
+//
+//        run.showStringArray(sa);
+//        sa.sort();
+//        run.showStringArray(sa);
 
 
 //        for (int i = 0; i < 10; i++) {
