@@ -13,8 +13,6 @@ public class Model {
             dict = new Dictionary("./src/main/resources/words");
         else if (type == 1)
             dict = new Dictionary("./src/main/resources/words400k");
-
-//        System.out.println("-----Dictionary initialized properly-----");
     }
 
     public void initializeDict(String path){
@@ -32,7 +30,7 @@ public class Model {
     }
 
     private void checkAllWords(StringArray wordsToCheck){
-        newWrongWords();
+//        newWrongWords();
 
         for (int i = 0; i < wordsToCheck.size(); i++){
             if (!dict.lookUpWordMatchingCase(wordsToCheck.get(i)))
@@ -44,8 +42,8 @@ public class Model {
         return wrongWords;
     }
 
-    private void newWrongWords(){
-        wrongWords = new StringArray();
-    }
+//    private void newWrongWords(){
+//        wrongWords = new StringArray();
+//    }
 
 }

@@ -4,12 +4,12 @@ public class Dictionary {
 
     public Dictionary(String dictPath){
         Reader rd = new Reader();
-        System.out.println("Loading dictionary...");
+        System.out.println("-----Loading dictionary...-----");
         dictArray = rd.readFile(dictPath);
-        System.out.println("Dictionary loaded!");
-        System.out.println("Sorting dictionary...");
+        System.out.println("-----Dictionary loaded!-----");
+        System.out.println("-----Sorting dictionary...-----");
         dictArray.sort();
-        System.out.println("Dictionary sorted!");
+        System.out.println("-----Dictionary sorted!-----");
 
     }
 

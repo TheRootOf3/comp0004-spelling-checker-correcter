@@ -14,7 +14,6 @@ public class StringArray {
             array[i] = a.get(i);
     }
 
-
     public int size() {
         return size;
     }
@@ -24,16 +23,14 @@ public class StringArray {
     }
 
     public String get(int index) {
-        if (index > size - 1)
+        if (index > size - 1 || index < 0)
             return null;
         else
             return array[index];
     }
 
     public void set(int index, String s) {
-        if (index > size - 1)
-            return;
-        else
+        if (index <= size - 1 && index >= 0)
             array[index] = s;
     }
 
@@ -46,14 +43,14 @@ public class StringArray {
     }
 
     public void insert(int index, String s) {
-        if (index > size - 1)
+        if (index > size - 1 || index < 0)
             return;
 
         if (calculateRatio() == 1)
             increaseArraySize();
 
-        for (int i = size - 1; i >= index; i--)
-            array[i + 1] = array[i];
+        if (size - index >= 0)
+            System.arraycopy(array, index, array, index + 1, size - index);
 
         size++;
         array[index] = s;
@@ -61,11 +58,11 @@ public class StringArray {
     }
 
     public void remove(int index) {
-        if (index > size - 1)
+        if (index > size - 1 || index < 0)
             return;
 
-        for (int i = index; i < size - 1; i++)
-            array[i] = array[i + 1];
+        if (size - 1 - index >= 0)
+            System.arraycopy(array, index + 1, array, index, size - 1 - index);
 
         size--;
         if (calculateRatio() <= 0.3) // Decreasing percentage
@@ -74,19 +71,11 @@ public class StringArray {
 
     public boolean contains(String s) {
         s = s.toLowerCase();
-        for (int i = 0; i < size; i++) {
-            if (s.compareTo(array[i].toLowerCase()) == 0)
-                return true;
-        }
-        return false;
+        return (indexOf(s) != -1);
     }
 
     public boolean containsMatchingCase(String s) {
-        for (int i = 0; i < size; i++) {
-            if (s.compareTo(array[i]) == 0)
-                return true;
-        }
-        return false;
+        return (indexOfMatchingCase(s) != -1);
     }
 
     public int indexOf(String s) {
@@ -108,16 +97,17 @@ public class StringArray {
 
     private void increaseArraySize() {
         String[] tmpArray = new String[array.length * 2];
-        for (int i = 0; i < array.length; i++)
-            tmpArray[i] = array[i];
+
+        System.arraycopy(array, 0, tmpArray, 0, array.length);
 
         array = tmpArray;
     }
 
     private void decreaseArraySize() {
         String[] tmpArray = new String[array.length / 2];
-        for (int i = 0; i < size; i++)
-            tmpArray[i] = array[i];
+        if (size >= 0)
+            System.arraycopy(array, 0, tmpArray, 0, size);
+
 
         array = tmpArray;
     }
@@ -141,14 +131,14 @@ public class StringArray {
         int sub1 = middle - start + 1;
         int sub2 = end - middle;
 
-        String left[] = new String[sub1];
-        String right[] = new String[sub2];
+        String[] left = new String[sub1];
+        String[] right = new String[sub2];
 
-        for (int i = 0; i < sub1; i++) {
-            left[i] = array[start + i];
-        }
-        for (int i = 0; i < sub2; i++)
-            right[i] = array[middle + i + 1];
+        if (sub1 >= 0)
+            System.arraycopy(array, start, left, 0, sub1);
+
+        if (sub2 >= 0)
+            System.arraycopy(array, middle + 1, right, 0, sub2);
 
         int index1 = 0;
         int index2 = 0;
@@ -182,6 +172,4 @@ public class StringArray {
     public void sort() {
         mSort(0, size - 1);
     }
-
-
 }

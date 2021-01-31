@@ -33,15 +33,15 @@ public class View {
 
     public String initUserDict(){
         System.out.println("Please provide an absolute path to your dictionary:");
-        String path = in.nextLine();
+//        String path = in.nextLine();
 
-        return path;
+        return in.nextLine();
     }
 
     public int initWordsType(){
         System.out.println("Select source of your text to be check:");
-        System.out.println("0 - text from a terminal");
-        System.out.println("1 - text from a text file");
+        System.out.println("0 - text from a terminal (One line)");
+        System.out.println("1 - text from a text file (Multiple lines)");
         String inStr = "";
 
         while (!inStr.equals("0") && !inStr.equals("1"))
@@ -53,9 +53,9 @@ public class View {
 
     public String getWordsFromFile(){
         System.out.println("Please provide an absolute path to your file:");
-        String path = in.nextLine();
+//        String path = in.nextLine();
 
-        return path;
+        return in.nextLine();
     }
 
     public void showWrongWords(){
@@ -72,7 +72,6 @@ public class View {
 
         }
         System.out.println("---------------------------------------------------");
-        System.out.println();
     }
 
     public int chooseAction(){
