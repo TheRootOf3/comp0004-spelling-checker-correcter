@@ -20,22 +20,14 @@ public class Dictionary {
         return dictArray.containsMatchingCase(word);
     }
 
-    public boolean lookUpWord(String word){
-        return binSearch(word, 0, dictArray.size() - 1);
-    }
-
+//    Makes 2 checks.
+//    1) If word starts with a lower letter just checks if word is in dict
+//    2) If word starts with a big letter then makes it lower and checks
     public boolean lookUpWordMatchingCase(String word){
+        if (word.charAt(0) == word.toUpperCase().charAt(0))
+            word = word.substring(0, 1).toLowerCase() + word.substring(1);
 
-        if (word.charAt(0) != word.toUpperCase().charAt(0))
-            return binSearch(word, 0, dictArray.size() - 1);
-        else {
-            if (binSearch(word, 0, dictArray.size() - 1))
-                return true;
-            else {
-                word = word.substring(0, 1).toLowerCase() + word.substring(1);
-                return (binSearch(word, 0, dictArray.size() - 1));
-            }
-        }
+        return (binSearch(word, 0, dictArray.size() - 1));
     }
 
 

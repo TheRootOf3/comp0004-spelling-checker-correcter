@@ -1,12 +1,12 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class Run {
     public static void main(String[] args) {
-        Run run = new Run();
-        StringArray sa = new StringArray();
-        sa.add("1");
-        run.showStringArray(sa);
-        sa.set(0, "2");
-        run.showStringArray(sa);
+        Reader rd = new Reader();
+        HashMap<String, Double> hm = rd.readTrigramsFreq("./src/main/resources/english_trigrams.txt");
+        for (Map.Entry<String, Double> entry : hm.entrySet())
+            System.out.println(entry.getKey() + " " + entry.getValue());
 
     }
 
