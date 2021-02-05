@@ -23,22 +23,31 @@ public class Controller {
         md.initializeDict(vw.initUserDict());
     }
 
-    public void initWords(){
-        if (vw.initWordsType() == 1)
-            getWordsFromFile();
-        else
-            getWordsFromTerminal();
+    public void initWords() {
+        int option = vw.initWordsType();
+        switch (option) {
+            case 0:
+                md.checkWords();
+                vw.showWrongWords();
+                break;
 
-        vw.showWrongWords();
+            case 1:
+                md.checkWords(vw.getWordsFromFile());
+                vw.showWrongWords();
+                break;
+
+            case 2:
+                md.correctWords();
+                vw.showWrongWords();
+                vw.showCorrectedText();
+
+                break;
+
+            default:
+                break;
+        }
     }
 
-    private void getWordsFromFile(){
-        md.checkWords(vw.getWordsFromFile());
-    }
-
-    private void getWordsFromTerminal(){
-        md.checkWords();
-    }
 
 //    public void chooseAction(){
 //        if (vw.chooseAction() == 1)

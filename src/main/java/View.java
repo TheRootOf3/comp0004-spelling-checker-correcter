@@ -39,16 +39,19 @@ public class View {
     }
 
     public int initWordsType(){
-        System.out.println("Select source of your text to be check:");
-        System.out.println("0 - text from a terminal (One line)");
-        System.out.println("1 - text from a text file (Multiple lines)");
+        System.out.println("Choose action:");
+        System.out.println("0 - only check text from a terminal (One line)");
+        System.out.println("1 - only check text from a text file (Multiple lines)");
+        System.out.println("2 - check and correct text from a terminal (One line)");
+
         String inStr = "";
 
-        while (!inStr.equals("0") && !inStr.equals("1"))
+        while (!inStr.equals("0") && !inStr.equals("1") && !inStr.equals("2"))
                 inStr = in.nextLine();
 
         return Integer.parseInt(inStr);
     }
+
 
 
     public String getWordsFromFile(){
@@ -74,15 +77,20 @@ public class View {
         System.out.println("---------------------------------------------------");
     }
 
-    public int chooseAction(){
-        System.out.println("Choose action");
-        System.out.println("0 - check another text");
-        System.out.println("1 - change dictionary");
-        String inStr = "";
-
-        while (!inStr.equals("0") && !inStr.equals("1"))
-            inStr = in.nextLine();
-
-        return Integer.parseInt(inStr);
+    public void showCorrectedText() {
+        StringArray lineByLine = md.getCorrectedLines();
+        System.out.println(lineByLine.get(0));
     }
+
+//    public int chooseAction(){
+//        System.out.println("Choose action");
+//        System.out.println("0 - check another text");
+//        System.out.println("1 - change dictionary");
+//        String inStr = "";
+//
+//        while (!inStr.equals("0") && !inStr.equals("1"))
+//            inStr = in.nextLine();
+//
+//        return Integer.parseInt(inStr);
+//    }
 }

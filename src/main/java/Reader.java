@@ -1,35 +1,34 @@
 public class Reader {
 
-    public StringArray readFile(String path){
-        FileInput fin = new FileInput(path);
+    public StringArray readFileWordbyWord(String path){
         Parser pa = new Parser();
-
-        while(fin.hasNextLine())
-            pa.extractWords(fin.nextLine());
+        pa.extractWords(readFileLineByLine(path));
 
         return pa.getParsedSA();
     }
 
-    public StringArray readInput(){
-        Input input = new Input();
+    public StringArray readInputWordByWord(){
         Parser pa = new Parser();
-
-        pa.extractWords(input.nextLine());
+        pa.extractWords(readInputLineByLine());
 
         return pa.getParsedSA();
     }
 
-    public String readFileToString(String path){
+    public StringArray readFileLineByLine(String path){
         FileInput fin = new FileInput(path);
-        String stream = "";
+        StringArray lineByLineSA = new StringArray();
+
         while (fin.hasNextLine())
-            stream = stream += fin.nextLine();
-        return stream;
+            lineByLineSA.add(fin.nextLine());
+
+        return lineByLineSA;
     }
 
-    public String readInputToString(){
+    public StringArray readInputLineByLine(){
         Input input = new Input();
-        return input.nextLine();
+        StringArray lineByLineSA = new StringArray();
+        lineByLineSA.add(input.nextLine());
+        return lineByLineSA;
 
     }
 

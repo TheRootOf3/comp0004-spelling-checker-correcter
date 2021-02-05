@@ -1,11 +1,10 @@
 public class Model {
     private Dictionary dict;
     private final Reader rd;
-    private StringArray wrongWords;
+    private SpellCorrecter sc;
 
     public Model(){
         rd = new Reader();
-        wrongWords = new StringArray();
     }
 
     public void initializeDict(int type){
@@ -20,30 +19,28 @@ public class Model {
     }
 
     public void checkWords(){
-        StringArray wordsToCheck = rd.readInput();
-        checkAllWords(wordsToCheck);
+        sc = new SpellCorrecter(dict);
+        sc.checkAllWords();
     }
 
     public void checkWords(String path){
-        StringArray wordsToCheck = rd.readFile(path);
-        checkAllWords(wordsToCheck);
+        sc = new SpellCorrecter(dict, path);
+        sc.checkAllWords();
     }
 
-    private void checkAllWords(StringArray wordsToCheck){
-//        newWrongWords();
-
-        for (int i = 0; i < wordsToCheck.size(); i++){
-            if (!dict.lookUpWordMatchingCase(wordsToCheck.get(i)))
-                wrongWords.add(wordsToCheck.get(i));
-        }
+    public void correctWords(){
+        sc = new SpellCorrecter(dict);
+        sc.checkAllWords();
+        sc.predictCorrectWords();
     }
 
     public StringArray getWrongWords(){
-        return wrongWords;
+        return sc.getWrongWords();
     }
 
-//    private void newWrongWords(){
-//        wrongWords = new StringArray();
-//    }
+    public StringArray getCorrectedLines(){
+        return sc.getCorrectedLineByLine();
+    }
+
 
 }

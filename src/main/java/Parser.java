@@ -9,7 +9,8 @@ public class Parser {
         return streamLine.replaceAll("[,.!?\"'@#$%^&*():;]", "");
     }
 
-    public void extractWords(String streamLine){
+    public StringArray extractWordsFromLine(String streamLine){
+        StringArray words = new StringArray();
         streamLine = removeDelims(streamLine);
         String word;
         int index = 0;
@@ -24,9 +25,18 @@ public class Parser {
             }
 
             if (!word.equals(""))
-                parsedSA.add(word);
+                words.add(word);
 
             index++;
+        }
+        return words;
+    }
+
+    public void extractWords(StringArray lineByLineSA){
+        for (int i = 0; i < lineByLineSA.size(); i++) {
+            StringArray tmpWords = extractWordsFromLine(lineByLineSA.get(i));
+            for (int j = 0; j < tmpWords.size(); j++)
+                parsedSA.add(tmpWords.get(j));
         }
     }
 
