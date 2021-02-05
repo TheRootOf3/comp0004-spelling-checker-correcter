@@ -85,6 +85,13 @@ class StringArrayTest {
         assertEquals("abc", sa.get(0));
     }
 
+    @Test
+    void insertEmptyTest(){
+        sa.insert(0, "abc");
+        assertEquals("abc" ,sa.get(0));
+    }
+
+
     @ParameterizedTest
     @ValueSource(ints = {0,1,2,3,4})
     void insertTest(int index){

@@ -19,4 +19,18 @@ public class Reader {
         return pa.getParsedSA();
     }
 
+    public String readFileToString(String path){
+        FileInput fin = new FileInput(path);
+        String stream = "";
+        while (fin.hasNextLine())
+            stream = stream += fin.nextLine();
+        return stream;
+    }
+
+    public String readInputToString(){
+        Input input = new Input();
+        return input.nextLine();
+
+    }
+
 }

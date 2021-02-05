@@ -1,7 +1,7 @@
 public class Model {
     private Dictionary dict;
     private final Reader rd;
-    private final StringArray wrongWords;
+    private StringArray wrongWords;
 
     public Model(){
         rd = new Reader();

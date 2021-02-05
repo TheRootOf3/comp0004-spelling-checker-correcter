@@ -4,7 +4,9 @@ public class StringArray {
     private String[] array;
 
     public StringArray() {
+        size = 0;
         array = new String[10];
+
     }
 
     public StringArray(StringArray a) {
@@ -43,17 +45,17 @@ public class StringArray {
     }
 
     public void insert(int index, String s) {
-        if (index > size - 1 || index < 0)
-            return;
 
-        if (calculateRatio() == 1)
-            increaseArraySize();
+        if ((index < size && index >= 0) || (size == 0 && index == 0)) {
+            if (calculateRatio() == 1)
+                increaseArraySize();
 
-        if (size - index >= 0)
-            System.arraycopy(array, index, array, index + 1, size - index);
+            if (size - index >= 0)
+                System.arraycopy(array, index, array, index + 1, size - index);
 
-        size++;
-        array[index] = s;
+            size++;
+            array[index] = s;
+        }
 
     }
 
