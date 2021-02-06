@@ -32,7 +32,7 @@ public class View {
     public int initBuiltInDictType(){
         System.out.println("Select which dictionary you want to use:");
         System.out.println("0 - UNIX \"words\" english dict (NOT RECOMMENDED)");
-        System.out.println("1 - bigger, 400k words english dict");
+        System.out.println("1 - bigger, 400k words english dict (https://github.com/dwyl/english-words)");
         int option = -1;
 
         while (option != 0 && option != 1) {

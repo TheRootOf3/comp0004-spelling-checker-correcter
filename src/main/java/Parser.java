@@ -6,7 +6,7 @@ public class Parser {
     }
 
     private String removeDelims(String streamLine){
-        return streamLine.replaceAll("[,.!?\"'@#$%^&*():;]", "");
+        return streamLine.replaceAll("[,.!?\"'@#$%^&*():;\\[\\]=+_{}]", "");
     }
 
     public StringArray extractWordsFromLine(String streamLine){
