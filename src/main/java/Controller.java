@@ -9,13 +9,15 @@ public class Controller {
     }
 
     public void initDict(){
-        if (vw.initDictType() == 0)
-            initBuiltInDict();
-        else
-            initUserDict();
+            if (vw.initDictType() == 0)
+                initBuiltInDict();
+            else
+                initUserDict();
+
     }
 
     private void initBuiltInDict(){
+
         md.initializeDict(vw.initBuiltInDictType());
     }
 
@@ -54,29 +56,46 @@ public class Controller {
     private void checkTerminal(){
         vw.provideTextToCheck();
         md.checkWords();
-        vw.showWrongWords();
+
+        checkingResult();
     }
 
     private void checkFile(){
         md.checkWords(vw.getFilePath());
-        vw.showWrongWords();
+        checkingResult();
     }
 
     private void correctTerminal(){
         vw.provideTextToCheck();
         md.correctWords();
-        vw.showWrongWords();
-        vw.showCorrectedText();
+
+        if (md.getWrongWords().size() != 0) {
+//            vw.showMap(md.getWrongToCorrectMap());
+            vw.showCorrectedText();
+        }
+        else
+            vw.everythingCorrect();
     }
 
-    private void correctFile(){
+    private void correctFile() {
         md.correctWords(vw.getFilePath());
-        vw.showWrongWords();
-        vw.showCorrectedText();
-        vw.correctingCompleted();
-        int savingResult = md.saveToFile(vw.getFilePath());
-        if (savingResult == -1)
-            vw.writingToFileError();
+
+        if (md.getWrongWords().size() != 0) {
+//            vw.showMap(md.getWrongToCorrectMap());
+            vw.showCorrectedText();
+            vw.correctingCompleted();
+            md.saveToFile(vw.getFilePath());
+        }
+        else
+            vw.everythingCorrect();
+
+    }
+
+    private void checkingResult(){
+        if (md.getWrongWords().size() != 0)
+            vw.showWrongWords();
+        else
+            vw.everythingCorrect();
     }
 
 }

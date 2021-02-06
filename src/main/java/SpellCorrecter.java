@@ -6,6 +6,7 @@ public class SpellCorrecter {
     private StringArray wordByWordSA;
     private StringArray wrongWords;
     private HashMap<String, String> wrongToCorrectMap;
+    private HashMap<String, Double> wordsFreq;
 
     private final Dictionary dict;
     private final ReaderWriter rd;
@@ -30,7 +31,7 @@ public class SpellCorrecter {
         Parser pa = new Parser();
         pa.extractWords(lineByLineSA);
         wordByWordSA = pa.getParsedSA();
-
+        wordsFreq = rd.readTrigramsFreq("./src/main/resources/dict_freq.txt"); //File from SymSpell github page https://github.com/wolfgarbe/SymSpell
     }
 
     public void checkAllWords(){
@@ -53,11 +54,14 @@ public class SpellCorrecter {
         return lineByLineSA;
     }
 
+    public HashMap<String, String> getWrongToCorrectMap() {
+        return wrongToCorrectMap;
+    }
+
     private void makePredictions (){
-        WordPredicter wp = new WordPredicter();
         for (int i = 0; i < wrongWords.size(); i++) {
+            WordPredicter wp = new WordPredicter(wordsFreq);
             wrongToCorrectMap.put(wrongWords.get(i), wp.predictWord(wrongWords.get(i)));
-//            System.out.println(wrongWords.get(i) + " " + wrongToCorrectMap.get(wrongWords.get(i)));
         }
     }
 
@@ -65,7 +69,7 @@ public class SpellCorrecter {
         String tmpLine = null;
         for (int i = 0; i < lineByLineSA.size(); i++){
             for (HashMap.Entry<String, String> entry : wrongToCorrectMap.entrySet()){
-                tmpLine = lineByLineSA.get(i).replaceAll(entry.getKey(), entry.getValue());
+                tmpLine = lineByLineSA.get(i).replaceAll("\\b" + entry.getKey() + "\\b", entry.getValue());
                 lineByLineSA.set(i, tmpLine);
             }
         }

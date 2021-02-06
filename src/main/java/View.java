@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class View {
@@ -29,7 +31,7 @@ public class View {
 
     public int initBuiltInDictType(){
         System.out.println("Select which dictionary you want to use:");
-        System.out.println("0 - UNIX \"words\" english dict");
+        System.out.println("0 - UNIX \"words\" english dict (NOT RECOMMENDED)");
         System.out.println("1 - bigger, 400k words english dict");
         int option = -1;
 
@@ -114,6 +116,15 @@ public class View {
         System.out.println("---------------------------------------------------");
     }
 
+    public void showMap(HashMap<String, String> map){
+        System.out.println("---------------------------------------------------");
+        System.out.println("Corrections made:");
+        for (Map.Entry<String, String> entry : map.entrySet()){
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+        System.out.println("---------------------------------------------------");
+    }
+
     public void correctingCompleted() {
         System.out.println("Correcting completed. Where to save the corrected text?");
     }
@@ -122,4 +133,7 @@ public class View {
         System.out.println("Saving failed. Error when writing to file.");
     }
 
+    public void everythingCorrect() {
+        System.out.println("Everything is correct.");
+    }
 }

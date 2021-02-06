@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class Model {
     private Dictionary dict;
     private final ReaderWriter rd;
@@ -40,11 +42,9 @@ public class Model {
         sc.predictCorrectWords();
     }
 
-    public int saveToFile(String path){
-        return rd.writeToFile(path, sc.getCorrectedLineByLine());
+    public void saveToFile(String path){
+        rd.writeToFile(path, sc.getCorrectedLineByLine());
     }
-
-
 
     public StringArray getWrongWords(){
         return sc.getWrongWords();
@@ -54,5 +54,8 @@ public class Model {
         return sc.getCorrectedLineByLine();
     }
 
+    public HashMap<String, String> getWrongToCorrectMap(){
+        return sc.getWrongToCorrectMap();
+    }
 
 }

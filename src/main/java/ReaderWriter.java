@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 public class ReaderWriter {
 
     public StringArray readFileWordbyWord(String path){
@@ -22,7 +21,7 @@ public class ReaderWriter {
         return pa.getParsedSA();
     }
 
-    public StringArray readFileLineByLine(String path){
+    public StringArray readFileLineByLine(String path) {
         StringArray lineByLineSA = new StringArray();
 
         try{
@@ -32,7 +31,8 @@ public class ReaderWriter {
             while (in.hasNextLine())
                 lineByLineSA.add(in.nextLine());
         }catch (FileNotFoundException e){
-            System.out.println("Error when reading a file.");
+            System.out.println("Error when reading a file: " + e.getMessage());
+            System.exit(0);
         }
 
         return lineByLineSA;
@@ -45,7 +45,8 @@ public class ReaderWriter {
             lineByLineSA.add(in.nextLine());
         } catch (InputMismatchException e)
         {
-            System.out.println("Error when reading text");
+            System.out.println("Error when reading text :"+ e.getMessage());
+            System.exit(0);
         }
         return lineByLineSA;
 
@@ -64,23 +65,22 @@ public class ReaderWriter {
                 hm.put(tmpPair[0].toLowerCase(), Double.parseDouble(tmpPair[1]));
             }
         }catch (FileNotFoundException e){
-            System.out.println("Error when reading a file.");
+            System.out.println("Error when reading a file: " + e.getMessage());
+            System.exit(0);
         }
 
         return hm;
     }
 
-    public int writeToFile(String path, StringArray dataToWrite){
+    public void writeToFile(String path, StringArray dataToWrite){
         try {
             FileWriter fw = new FileWriter(path);
             for (int i = 0; i < dataToWrite.size(); i++)
                 fw.write(dataToWrite.get(i) + "\n");
             fw.close();
         } catch (IOException e) {
-            return -1;
+            System.out.println("Error when writing to a file: " + e.getMessage());
+            System.exit(0);
         }
-
-        return 0;
     }
-
 }
