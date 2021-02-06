@@ -3,6 +3,6 @@ public class Main {
         Controller ctrl = new Controller();
 
         ctrl.initDict();
-        ctrl.initWords();
+        ctrl.actionSelection();
     }
 }

@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Run {
     public static void main(String[] args) {
-        Reader rd = new Reader();
+        ReaderWriter rd = new ReaderWriter();
         HashMap<String, Double> hm = rd.readTrigramsFreq("./src/main/resources/english_trigrams.txt");
         for (Map.Entry<String, Double> entry : hm.entrySet())
             System.out.println(entry.getKey() + " " + entry.getValue());

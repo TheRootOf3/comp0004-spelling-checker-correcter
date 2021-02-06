@@ -20,27 +20,30 @@ public class Controller {
     }
 
     private void initUserDict(){
-        md.initializeDict(vw.initUserDict());
+        md.initializeDict(vw.getFilePath());
     }
 
-    public void initWords() {
+    public void actionSelection() {
         int option = vw.initWordsType();
+        while (option > 3 || option < 0) {
+            option = vw.initWordsType();
+        }
+
         switch (option) {
             case 0:
-                md.checkWords();
-                vw.showWrongWords();
+                checkTerminal();
                 break;
 
             case 1:
-                md.checkWords(vw.getWordsFromFile());
-                vw.showWrongWords();
+                checkFile();
                 break;
 
             case 2:
-                md.correctWords();
-                vw.showWrongWords();
-                vw.showCorrectedText();
+                correctTerminal();
+                break;
 
+            case 3:
+                correctFile();
                 break;
 
             default:
@@ -48,10 +51,32 @@ public class Controller {
         }
     }
 
+    private void checkTerminal(){
+        vw.provideTextToCheck();
+        md.checkWords();
+        vw.showWrongWords();
+    }
 
-//    public void chooseAction(){
-//        if (vw.chooseAction() == 1)
-//            initDictType();
-//    }
+    private void checkFile(){
+        md.checkWords(vw.getFilePath());
+        vw.showWrongWords();
+    }
+
+    private void correctTerminal(){
+        vw.provideTextToCheck();
+        md.correctWords();
+        vw.showWrongWords();
+        vw.showCorrectedText();
+    }
+
+    private void correctFile(){
+        md.correctWords(vw.getFilePath());
+        vw.showWrongWords();
+        vw.showCorrectedText();
+        vw.correctingCompleted();
+        int savingResult = md.saveToFile(vw.getFilePath());
+        if (savingResult == -1)
+            vw.writingToFileError();
+    }
 
 }

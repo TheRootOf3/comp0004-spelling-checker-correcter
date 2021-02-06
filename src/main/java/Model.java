@@ -1,10 +1,10 @@
 public class Model {
     private Dictionary dict;
-    private final Reader rd;
+    private final ReaderWriter rd;
     private SpellCorrecter sc;
 
     public Model(){
-        rd = new Reader();
+        rd = new ReaderWriter();
     }
 
     public void initializeDict(int type){
@@ -33,6 +33,18 @@ public class Model {
         sc.checkAllWords();
         sc.predictCorrectWords();
     }
+
+    public void correctWords(String path){
+        sc = new SpellCorrecter(dict, path);
+        sc.checkAllWords();
+        sc.predictCorrectWords();
+    }
+
+    public int saveToFile(String path){
+        return rd.writeToFile(path, sc.getCorrectedLineByLine());
+    }
+
+
 
     public StringArray getWrongWords(){
         return sc.getWrongWords();

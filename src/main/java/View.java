@@ -1,64 +1,93 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class View {
     private final Model md;
-    private final Input in;
 
     public View(Model md){
         this.md = md;
-        in = new Input();
     }
 
     public int initDictType(){
         System.out.println("Do you want to use built-in dictionary?");
         System.out.println("0 - yes");
         System.out.println("1 - no");
-        String tmpStr = "";
+        int option = -1;
 
-        while (!tmpStr.equals("0") && !tmpStr.equals("1"))
-            tmpStr = in.nextLine();
+        while (option != 0 && option != 1) {
+            try {
+                Scanner in = new Scanner(System.in);
+                option = in.nextInt();
+            } catch (InputMismatchException e)
+            {
+                System.out.println("Provide correct option");
+            }
+        }
 
-        return Integer.parseInt(tmpStr);
+        return option;
     }
 
     public int initBuiltInDictType(){
         System.out.println("Select which dictionary you want to use:");
         System.out.println("0 - UNIX \"words\" english dict");
         System.out.println("1 - bigger, 400k words english dict");
-        String inStr = "";
+        int option = -1;
 
-        while (!inStr.equals("0") && !inStr.equals("1"))
-            inStr = in.nextLine();
+        while (option != 0 && option != 1) {
+            try {
+                Scanner in = new Scanner(System.in);
+                option = in.nextInt();
+            } catch (InputMismatchException e)
+            {
+                System.out.println("Provide correct option");
+            }
+        }
 
-        return Integer.parseInt(inStr);
+        return option;
     }
 
-    public String initUserDict(){
-        System.out.println("Please provide an absolute path to your dictionary:");
-//        String path = in.nextLine();
-
-        return in.nextLine();
+    public void provideTextToCheck(){
+        System.out.println("Please provide text to be checked:");
     }
+
 
     public int initWordsType(){
         System.out.println("Choose action:");
         System.out.println("0 - only check text from a terminal (One line)");
         System.out.println("1 - only check text from a text file (Multiple lines)");
         System.out.println("2 - check and correct text from a terminal (One line)");
+        System.out.println("3 - check and correct text from a text file (Multiple lines)");
 
-        String inStr = "";
+        int option = -1;
 
-        while (!inStr.equals("0") && !inStr.equals("1") && !inStr.equals("2"))
-                inStr = in.nextLine();
+        while (option != 0 && option != 1 && option != 2 && option != 3) {
+            try {
+                Scanner in = new Scanner(System.in);
+                option = in.nextInt();
+            } catch (InputMismatchException e)
+            {
+                System.out.println("Provide correct option");
+            }
+        }
 
-        return Integer.parseInt(inStr);
+        return option;
     }
 
-
-
-    public String getWordsFromFile(){
+    public String getFilePath(){
         System.out.println("Please provide an absolute path to your file:");
-//        String path = in.nextLine();
+        String path = null;
 
-        return in.nextLine();
+        while (path == null) {
+            try {
+                Scanner in = new Scanner(System.in);
+                path = in.nextLine();
+            } catch (InputMismatchException e)
+            {
+                System.out.println("Provide correct option");
+            }
+        }
+
+        return path;
     }
 
     public void showWrongWords(){
@@ -79,18 +108,18 @@ public class View {
 
     public void showCorrectedText() {
         StringArray lineByLine = md.getCorrectedLines();
-        System.out.println(lineByLine.get(0));
+        System.out.println("Corrected Text:");
+        for (int i = 0; i < lineByLine.size(); i++)
+            System.out.println(lineByLine.get(i));
+        System.out.println("---------------------------------------------------");
     }
 
-//    public int chooseAction(){
-//        System.out.println("Choose action");
-//        System.out.println("0 - check another text");
-//        System.out.println("1 - change dictionary");
-//        String inStr = "";
-//
-//        while (!inStr.equals("0") && !inStr.equals("1"))
-//            inStr = in.nextLine();
-//
-//        return Integer.parseInt(inStr);
-//    }
+    public void correctingCompleted() {
+        System.out.println("Correcting completed. Where to save the corrected text?");
+    }
+
+    public void writingToFileError() {
+        System.out.println("Saving failed. Error when writing to file.");
+    }
+
 }

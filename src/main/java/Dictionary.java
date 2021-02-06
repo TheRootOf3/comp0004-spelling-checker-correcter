@@ -3,18 +3,15 @@ public class Dictionary {
 
 
     public Dictionary(String dictPath){
-        Reader rd = new Reader();
+        ReaderWriter rd = new ReaderWriter();
         Parser pa = new Parser();
         System.out.println("-----Loading dictionary...-----");
-//        pa.extractWords(rd.readFileLineByLine(dictPath));
-//        dictArray = pa.getParsedSA();
         dictArray = rd.readFileWordbyWord(dictPath);
         System.out.println("-----Dictionary loaded!-----");
         System.out.println("-----Sorting dictionary...-----");
         dictArray.sort();
         System.out.println("-----Dictionary sorted!-----");
     }
-
 
     public boolean lookUpWordLinear(String word){
         return dictArray.containsMatchingCase(word);
