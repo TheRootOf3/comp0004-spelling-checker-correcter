@@ -3,10 +3,11 @@ public class StringArray {
     private int size;
     private String[] array;
 
+//    Must-have methods
+
     public StringArray() {
         size = 0;
         array = new String[10];
-
     }
 
     public StringArray(StringArray a) {
@@ -45,7 +46,7 @@ public class StringArray {
     }
 
     public void insert(int index, String s) {
-
+        // inserts only if index valid or (StringArray empty and index 0)
         if ((index < size && index >= 0) || (size == 0 && index == 0)) {
             if (calculateRatio() == 1)
                 increaseArraySize();
@@ -114,21 +115,19 @@ public class StringArray {
         array = tmpArray;
     }
 
-//    private double calculateRatio(){
-//        return ((double) size / (double) array.length);
-//    }
+    private double calculateRatio(){
+        return ((double) size / (double) array.length);
+    }
 
 
     //    Developmental method
+
     public int getRealSize() {
         return array.length;
     }
 
-    public double calculateRatio() {
-        return ((double) size / (double) array.length);
-    }
+    //    Sorting algo & methods
 
-    //    Sorting algo
     private void merge(int start, int middle, int end) {
         int sub1 = middle - start + 1;
         int sub2 = end - middle;

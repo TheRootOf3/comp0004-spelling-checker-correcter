@@ -3,21 +3,20 @@ public class Controller {
     private final Model md;
     private final View vw;
 
+//    Create new Model and View
     public Controller(){
         md = new Model();
         vw = new View(md);
     }
 
     public void initDict(){
-            if (vw.initDictType() == 0)
-                initBuiltInDict();
-            else
-                initUserDict();
-
+        if (vw.initDictType() == 0)
+            initBuiltInDict();
+        else
+            initUserDict();
     }
 
     private void initBuiltInDict(){
-
         md.initializeDict(vw.initBuiltInDictType());
     }
 
@@ -26,9 +25,9 @@ public class Controller {
     }
 
     public void actionSelection() {
-        int option = vw.initWordsType();
+        int option = vw.initAction();
         while (option > 3 || option < 0) {
-            option = vw.initWordsType();
+            option = vw.initAction();
         }
 
         switch (option) {
@@ -62,6 +61,7 @@ public class Controller {
 
     private void checkFile(){
         md.checkWords(vw.getFilePath());
+
         checkingResult();
     }
 
@@ -69,10 +69,9 @@ public class Controller {
         vw.provideTextToCheck();
         md.correctWords();
 
-        if (md.getWrongWords().size() != 0) {
-//            vw.showMap(md.getWrongToCorrectMap());
+//        Check if there is anything to correct. If not then show it
+        if (md.getWrongWords().size() != 0)
             vw.showCorrectedText();
-        }
         else
             vw.everythingCorrect();
     }
@@ -80,8 +79,8 @@ public class Controller {
     private void correctFile() {
         md.correctWords(vw.getFilePath());
 
+//        Check if there is anything to correct. If not then show it
         if (md.getWrongWords().size() != 0) {
-//            vw.showMap(md.getWrongToCorrectMap());
             vw.showCorrectedText();
             vw.correctingCompleted();
             md.saveToFile(vw.getFilePath());
@@ -92,6 +91,7 @@ public class Controller {
     }
 
     private void checkingResult(){
+//        Check if there is anything to correct. If not then show it
         if (md.getWrongWords().size() != 0)
             vw.showWrongWords();
         else

@@ -52,12 +52,7 @@ public class WordPredicter {
         int option = -2;
 
         while (option > suggestions.size() || option < -1) {
-            try {
-                Scanner sc = new Scanner(System.in);
-                option = sc.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Choose correct option");
-            }
+            option = ReaderWriter.readInt(option);
         }
 
         if (option == 0){
@@ -77,7 +72,8 @@ public class WordPredicter {
             bestValue = wordsFreq.get(s);
             bestString = s;
         }
-        suggestions.add(s);
+        if (!suggestions.contains(s)) //prevent duplicates
+            suggestions.add(s);
     }
 
     private void predict_MissingLetter(String s){

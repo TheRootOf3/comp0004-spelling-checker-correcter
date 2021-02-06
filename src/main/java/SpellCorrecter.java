@@ -9,18 +9,15 @@ public class SpellCorrecter {
     private HashMap<String, Double> wordsFreq;
 
     private final Dictionary dict;
-    private final ReaderWriter rd;
 
     public SpellCorrecter(Dictionary dict){
-        rd = new ReaderWriter();
-        lineByLineSA = rd.readInputLineByLine();
+        lineByLineSA = ReaderWriter.readInputLineByLine();
         this.dict = dict;
         auxConstructor();
     }
 
     public SpellCorrecter(Dictionary dict, String path){
-        rd = new ReaderWriter();
-        lineByLineSA = rd.readFileLineByLine(path);
+        lineByLineSA = ReaderWriter.readFileLineByLine(path);
         this.dict = dict;
         auxConstructor();
     }
@@ -31,7 +28,7 @@ public class SpellCorrecter {
         Parser pa = new Parser();
         pa.extractWords(lineByLineSA);
         wordByWordSA = pa.getParsedSA();
-        wordsFreq = rd.readTrigramsFreq("./src/main/resources/dict_freq.txt"); //File from SymSpell github page https://github.com/wolfgarbe/SymSpell
+        wordsFreq = ReaderWriter.readTrigramsFreq("./src/main/resources/dict_freq.txt"); //File from SymSpell github page https://github.com/wolfgarbe/SymSpell
     }
 
     public void checkAllWords(){

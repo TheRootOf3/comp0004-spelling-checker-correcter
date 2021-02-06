@@ -1,13 +1,15 @@
 public class Parser {
-    private StringArray parsedSA;
+    private final StringArray parsedSA;
 
     public Parser(){
         parsedSA = new StringArray();
     }
 
     private String removeDelims(String streamLine){
-        return streamLine.replaceAll("[,.!?\"'@#$%^&*():;\\[\\]=+_{}]", "");
+//        return streamLine.replaceAll("[,.!?\"'@#$%^&/*():;\\[\\]=+_{}]", "");
+        return streamLine.replaceAll("[\\p{Punct}]", ""); //better coverage of non-literals
     }
+
 
     public StringArray extractWordsFromLine(String streamLine){
         StringArray words = new StringArray();

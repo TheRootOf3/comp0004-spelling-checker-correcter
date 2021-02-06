@@ -3,10 +3,9 @@ public class Dictionary {
 
 
     public Dictionary(String dictPath){
-        ReaderWriter rd = new ReaderWriter();
         Parser pa = new Parser();
         System.out.println("-----Loading dictionary...-----");
-        dictArray = rd.readFileWordbyWord(dictPath);
+        dictArray = ReaderWriter.readFileWordbyWord(dictPath);
         System.out.println("-----Dictionary loaded!-----");
         System.out.println("-----Sorting dictionary...-----");
         dictArray.sort();

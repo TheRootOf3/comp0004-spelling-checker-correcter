@@ -2,12 +2,7 @@ import java.util.HashMap;
 
 public class Model {
     private Dictionary dict;
-    private final ReaderWriter rd;
     private SpellCorrecter sc;
-
-    public Model(){
-        rd = new ReaderWriter();
-    }
 
     public void initializeDict(int type){
         if (type == 0)
@@ -43,7 +38,7 @@ public class Model {
     }
 
     public void saveToFile(String path){
-        rd.writeToFile(path, sc.getCorrectedLineByLine());
+        ReaderWriter.writeToFile(path, sc.getCorrectedLineByLine());
     }
 
     public StringArray getWrongWords(){

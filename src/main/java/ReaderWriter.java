@@ -5,23 +5,48 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-public class ReaderWriter {
 
-    public StringArray readFileWordbyWord(String path){
+public final class ReaderWriter {
+
+    public static int readInt(int defaultIfFailed){
+        int inputInt = defaultIfFailed; // means incorrect input
+        try {
+            Scanner in = new Scanner(System.in);
+            inputInt = in.nextInt();
+        } catch (InputMismatchException e)
+        {
+            System.out.println("Provide correct option");
+        }
+        return inputInt;
+    }
+
+    public static String readString(String defaultIfFailed){
+        String inputString = defaultIfFailed; // means incorrect input
+        try {
+            Scanner in = new Scanner(System.in);
+            inputString = in.nextLine();
+        } catch (InputMismatchException e)
+        {
+            System.out.println("Provide correct option");
+        }
+        return inputString;
+    }
+
+    public static StringArray readFileWordbyWord(String path){
         Parser pa = new Parser();
         pa.extractWords(readFileLineByLine(path));
 
         return pa.getParsedSA();
     }
 
-    public StringArray readInputWordByWord(){
+    public static StringArray readInputWordByWord(){
         Parser pa = new Parser();
         pa.extractWords(readInputLineByLine());
 
         return pa.getParsedSA();
     }
 
-    public StringArray readFileLineByLine(String path) {
+    public static StringArray readFileLineByLine(String path) {
         StringArray lineByLineSA = new StringArray();
 
         try{
@@ -38,7 +63,7 @@ public class ReaderWriter {
         return lineByLineSA;
     }
 
-    public StringArray readInputLineByLine(){
+    public static StringArray readInputLineByLine(){
         StringArray lineByLineSA = new StringArray();
         Scanner in = new Scanner(System.in);
         try {
@@ -52,7 +77,7 @@ public class ReaderWriter {
 
     }
 
-    public HashMap<String, Double> readTrigramsFreq(String path){
+    public static HashMap<String, Double> readTrigramsFreq(String path){
         HashMap<String, Double> hm = new HashMap<>();
         String[] tmpPair;
 
@@ -72,7 +97,7 @@ public class ReaderWriter {
         return hm;
     }
 
-    public void writeToFile(String path, StringArray dataToWrite){
+    public static void writeToFile(String path, StringArray dataToWrite){
         try {
             FileWriter fw = new FileWriter(path);
             for (int i = 0; i < dataToWrite.size(); i++)
