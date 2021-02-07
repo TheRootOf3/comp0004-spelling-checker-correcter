@@ -62,7 +62,7 @@ public class SpellCorrecter {
 //    Creating instances of WordPredicter class and trying to find suggestions and best match for each word
     private void makePredictions (){
         for (int i = 0; i < wrongWords.size(); i++) {
-            WordPredicter wp = new WordPredicter(wordsFreq);
+            WordPredicter wp = new WordPredicter(wordsFreq, dict);
             wrongToCorrectMap.put(wrongWords.get(i), wp.predictWord(wrongWords.get(i)));
         }
     }

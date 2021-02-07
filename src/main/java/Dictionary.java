@@ -24,8 +24,10 @@ public class Dictionary {
         if (word.charAt(0) == word.toUpperCase().charAt(0)){
             if ((binSearch(word, 0, dictArray.size() - 1)))
                 return true;
+            else if (word.length() == 1) //check for words of length 1
+                word = word.toLowerCase();
             else
-                word = word.substring(0, 1).toLowerCase() + word.substring(1);
+                word = word.substring(0, 1).toLowerCase() + word.substring(1); //this throws IndexOutOfBoundsException for words of length 1
         }
 
         return (binSearch(word, 0, dictArray.size() - 1));
