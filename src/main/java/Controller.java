@@ -1,3 +1,5 @@
+// Controller class is used to communicate between model and view.
+
 public class Controller {
 
     private final Model md;

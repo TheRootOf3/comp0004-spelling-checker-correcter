@@ -1,3 +1,5 @@
+// This is a main Model class. It is used to initialize and keep dictionary and create SpellCorrecter instance.
+
 import java.util.HashMap;
 
 public class Model {
@@ -15,22 +17,26 @@ public class Model {
         dict = new Dictionary(path);
     }
 
+    //    From terminal
     public void checkWords(){
         sc = new SpellCorrecter(dict);
         sc.checkAllWords();
     }
 
+    //    From file
     public void checkWords(String path){
         sc = new SpellCorrecter(dict, path);
         sc.checkAllWords();
     }
 
+    //    From terminal
     public void correctWords(){
         sc = new SpellCorrecter(dict);
         sc.checkAllWords();
         sc.predictCorrectWords();
     }
 
+    //    From file
     public void correctWords(String path){
         sc = new SpellCorrecter(dict, path);
         sc.checkAllWords();

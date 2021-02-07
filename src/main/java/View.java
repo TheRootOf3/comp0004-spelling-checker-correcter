@@ -1,4 +1,4 @@
-// This class is mostly for interacting with user
+// This class is mostly for interacting with a user (showing, reading)
 
 public class View {
     private final Model md; //model reference in order to print show its state

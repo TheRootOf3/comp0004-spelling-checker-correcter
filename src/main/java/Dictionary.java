@@ -1,3 +1,5 @@
+// This class is used to store a dictionary and its lookUp feature. It also provides a binary Search capability.
+
 public class Dictionary {
     private final StringArray dictArray;
 
@@ -16,12 +18,15 @@ public class Dictionary {
         return dictArray.containsMatchingCase(word);
     }
 
-//    Makes 2 checks.
-//    1) If word starts with a lower letter just checks if word is in dict
-//    2) If word starts with a big letter then makes it lower and checks
-    public boolean lookUpWordMatchingCase(String word){
-        if (word.charAt(0) == word.toUpperCase().charAt(0))
-            word = word.substring(0, 1).toLowerCase() + word.substring(1);
+//    Since every word can start with the big letter (beginning of a sentence), checks if word starts with upper.
+//    If so, checks it, if not found changes it to lower case and then checks. If word starts with lower case, just checks.
+    public boolean lookUpWord(String word){
+        if (word.charAt(0) == word.toUpperCase().charAt(0)){
+            if ((binSearch(word, 0, dictArray.size() - 1)))
+                return true;
+            else
+                word = word.substring(0, 1).toLowerCase() + word.substring(1);
+        }
 
         return (binSearch(word, 0, dictArray.size() - 1));
     }
@@ -34,11 +39,9 @@ public class Dictionary {
             if (word.compareTo(dictArray.get(mid)) == 0)
                 return true;
             else if (word.compareTo(dictArray.get(mid)) > 0) {
-//                System.out.println(strArr.get(mid + 1) + " " + strArr.get(end) + (mid + 1) + " " + end);
                 return binSearch(word, mid + 1, end);
             }
             else {
-//                System.out.println(strArr.get(start) + " " + strArr.get(mid - 1) + start + " " + (mid-1));
                 return binSearch(word, start, mid - 1);
             }
         }

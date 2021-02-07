@@ -1,3 +1,5 @@
+// Main data structure used in the program. Implemented as in the coursework note
+
 public class StringArray {
 
     private int size;

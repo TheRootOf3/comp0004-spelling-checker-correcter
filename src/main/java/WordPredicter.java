@@ -1,6 +1,7 @@
+// Instances of this class are used to predict and choose a single word. Here is also implemented the interface for
+// accepting or choosing the correct word by the user.
+
 import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class WordPredicter {
     private final HashMap<String, Double> wordsFreq;
@@ -22,16 +23,19 @@ public class WordPredicter {
 
         word = word.toLowerCase();
 
+//        Predicting 4 different situations. Assuming that error in spelling occurs as a result of a missclick rather than intentional action.
         predict_ExtraLetter(word);
         predict_MissingLetter(word);
         predict_WrongLetter(word);
         predict_ChangedLetters(word);
 
+
+//        UI block. Shows wrong word, its possible correction and gets
         System.out.println("--- Wrong word: " + originalWord);
         if (originalWord.equals(bestString)) {
             System.out.println("Haven't found any suggestions for " + originalWord);
             System.out.println();
-            return originalWord + "(wrong)";
+            return originalWord + "(wrong)"; //if there are no suggestions just annotate the word with "(wrong)" at the end
         }
         else {
             System.out.println("Showing all suggestions to replace it:");
@@ -41,9 +45,10 @@ public class WordPredicter {
         System.out.println("\nBest match found by word frequency analysis:");
         System.out.println(originalWord + " -> " + bestString);
 
-        return decision();
+        return decision(); //if there are suggestions then let user make a decision
     }
 
+//    User decision
     private String decision(){
         System.out.println("\nAccept best match? If no select replacement.");
         System.out.println("option 0 - Yes");
@@ -65,6 +70,7 @@ public class WordPredicter {
 
     }
 
+//    Scoring a word, looking if it is in a wordFreq HashMap. If so, then check the scoring
     private void scoreWord(String s){
         if(wordsFreq.get(s) == null)
             return;
@@ -76,6 +82,7 @@ public class WordPredicter {
             suggestions.add(s);
     }
 
+//    Checking all cases were the letter is missing
     private void predict_MissingLetter(String s){
         String newWord;
         for (int j = 0; j < 26; j++) {
@@ -89,7 +96,7 @@ public class WordPredicter {
             }
         }
     }
-
+    //    Checking all cases were the letter is wrong
     private void predict_WrongLetter(String s){
         String newWord;
         for (int i = 0; i < s.length(); i++) {
@@ -99,7 +106,7 @@ public class WordPredicter {
             }
         }
     }
-
+    //    Checking all cases were there is a missing letter
     private void predict_ExtraLetter(String s){
         String newWord;
         for (int i = 0; i < s.length(); i++) {
@@ -108,6 +115,7 @@ public class WordPredicter {
         }
     }
 
+    //    Checking all cases were two letters have been swapped
     private void predict_ChangedLetters(String s){
         String newWord;
         for (int i = 0; i < s.length() - 1; i++){

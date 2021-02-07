@@ -1,3 +1,6 @@
+// This is a final class serving several static methods for interacting with user and dealing with files.
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -8,6 +11,7 @@ import java.util.Scanner;
 
 public final class ReaderWriter {
 
+//    Reading single integer from the terminal input. If failed to read, then return a default value.
     public static int readInt(int defaultIfFailed){
         int inputInt = defaultIfFailed; // means incorrect input
         try {
@@ -19,7 +23,7 @@ public final class ReaderWriter {
         }
         return inputInt;
     }
-
+    //    Reading single line from the terminal input. If failed to read, then return a default value.
     public static String readString(String defaultIfFailed){
         String inputString = defaultIfFailed; // means incorrect input
         try {
@@ -32,13 +36,14 @@ public final class ReaderWriter {
         return inputString;
     }
 
+    //    Returning an already parsed SA from a file
     public static StringArray readFileWordbyWord(String path){
         Parser pa = new Parser();
         pa.extractWords(readFileLineByLine(path));
 
         return pa.getParsedSA();
     }
-
+    //    Returning an already parsed SA from a terminal input
     public static StringArray readInputWordByWord(){
         Parser pa = new Parser();
         pa.extractWords(readInputLineByLine());
@@ -46,6 +51,7 @@ public final class ReaderWriter {
         return pa.getParsedSA();
     }
 
+    //    Returning SA of lines from a file
     public static StringArray readFileLineByLine(String path) {
         StringArray lineByLineSA = new StringArray();
 
@@ -63,6 +69,7 @@ public final class ReaderWriter {
         return lineByLineSA;
     }
 
+    //    Returning SA of lines from a terminal input
     public static StringArray readInputLineByLine(){
         StringArray lineByLineSA = new StringArray();
         Scanner in = new Scanner(System.in);
@@ -76,8 +83,8 @@ public final class ReaderWriter {
         return lineByLineSA;
 
     }
-
-    public static HashMap<String, Double> readTrigramsFreq(String path){
+    //    Returning HashMap of words and associated frequencies.
+    public static HashMap<String, Double> readWordsFreq(String path){
         HashMap<String, Double> hm = new HashMap<>();
         String[] tmpPair;
 
@@ -96,7 +103,7 @@ public final class ReaderWriter {
 
         return hm;
     }
-
+    // Saving corrected text to file
     public static void writeToFile(String path, StringArray dataToWrite){
         try {
             FileWriter fw = new FileWriter(path);
