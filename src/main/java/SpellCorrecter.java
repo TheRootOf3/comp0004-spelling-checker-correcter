@@ -30,7 +30,7 @@ public class SpellCorrecter {
         Parser pa = new Parser();
         pa.extractWords(lineByLineSA);
         wordByWordSA = pa.getParsedSA();
-        wordsFreq = ReaderWriter.readWordsFreq("./src/main/resources/dict_freq.txt"); //File from SymSpell github page https://github.com/wolfgarbe/SymSpell
+        wordsFreq = ReaderWriter.readWordsFreq("./src/main/resources/dict_freq"); //File from SymSpell github page https://github.com/wolfgarbe/SymSpell
     }
 
     //  Method for checking all words
