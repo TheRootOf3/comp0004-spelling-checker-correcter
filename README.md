@@ -63,5 +63,6 @@ The content of user input, files and dictionaries is loaded to custom data struc
 It is also used during word spelling checking. However, spell correcting os also performed using `HashMap`s.
 `StringArray` has a sorting method in order to keep dictionaries sorted `->` much faster access than using `StringArray` `contains` method.
 
-##About author
+## About author
+This is my first Java project.
 Written in 2021 by Andrzej Szablewski for the UCL CS COMP0004 coursework 1.
